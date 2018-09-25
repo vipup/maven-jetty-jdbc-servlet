@@ -4,7 +4,7 @@ A simple servlet that uses Maven, JDBC, and Jetty to say 'Hello world'
 Setup The Database
 ------------------
 
-First, install / make a database as described in [Official Firebird DB](Docu]https://firebirdsql.org/manual/ubusetup.html);
+First, install / make a database as described in [Official Firebird DB Docu](https://firebirdsql.org/manual/ubusetup.html);
 
 If you have changed any of the values in the example SQL above, edit
 the file `src/main/resources/application.properties` and edit these
