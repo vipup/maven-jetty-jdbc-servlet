@@ -13,7 +13,7 @@ properties:
      
     mjjs.datasource.url=jdbc:firebirdsql://firebirddb_Host//var/lib/firebird/2.5/data/employee.fdb
     mjjs.datasource.username=SYSDBA
-    mjjs.datasource.password=gesha123
+    mjjs.datasource.password=VerySecurePa$$w0rd!
     mjjs.datasource.driverClassName=org.firebirdsql.jdbc.FBDriver
     
     initial.sql.query= SELECT * FROM EMPLOYEE  
