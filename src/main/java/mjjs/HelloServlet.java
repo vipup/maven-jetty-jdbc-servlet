@@ -83,14 +83,16 @@ public class HelloServlet extends HttpServlet {
     }
 
     Statement stmt = null;
-    String query = "SELECT name FROM mjjs LIMIT 5;";
+    String query = prop.getProperty("initial.sql.query");
 
     try {
         stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         int count = 0;
         while (rs.next()) {
-            String name = rs.getString("name");
+            String NAME_TMP = prop.getProperty("initial.sql.query.field.name", "name"); 
+            
+			String name = rs.getString(NAME_TMP );
             out.println("name="+name);
             count++;
         }
@@ -100,7 +102,7 @@ public class HelloServlet extends HttpServlet {
         out.println("");
         out.println("CREATE TABLE mjjs (name TEXT) ENGINE = InnoDB DEFAULT CHARSET=utf8;");
         out.println("INSERT INTO mjjs (name) VALUES ('tsugi');");
-        e.printStackTrace();
+        e.printStackTrace(out);
     }
 
     try {

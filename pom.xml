@@ -25,12 +25,11 @@
             <version>2.4</version>
         </dependency>
 
-        <!-- MySQL DATABASE -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
-        </dependency>
+<dependency>
+    <groupId>org.firebirdsql.jdbc</groupId>
+    <artifactId>jaybird-jdk18</artifactId>
+    <version>2.2.12</version>
+</dependency>
 
         <dependency>
             <groupId>junit</groupId>
@@ -66,7 +65,7 @@
           <scanIntervalSeconds>10</scanIntervalSeconds>
           <connectors>
             <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-              <port>8080</port>
+              <port>9090</port>
               <maxIdleTime>60000</maxIdleTime>
             </connector>
           </connectors>
