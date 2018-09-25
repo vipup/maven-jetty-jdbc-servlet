@@ -4,22 +4,20 @@ A simple servlet that uses Maven, JDBC, and Jetty to say 'Hello world'
 Setup The Database
 ------------------
 
-First, make a database, user, table and add a record:
-
-    CREATE DATABASE mjjs DEFAULT CHARACTER SET utf8;
-    GRANT ALL ON mjjs.* TO 'mjjsuser'@'localhost' IDENTIFIED BY 'mjjspassword';
-    GRANT ALL ON mjjs.* TO 'mjjsuser'@'127.0.0.1' IDENTIFIED BY 'mjjspassword';
-    CREATE TABLE mjjs (name TEXT) ENGINE = InnoDB DEFAULT CHARSET=utf8;
-    INSERT INTO mjjs (name) VALUES ('tsugi');
+First, install / make a database as described in [Official Firebird DB](Docu]https://firebirdsql.org/manual/ubusetup.html);
 
 If you have changed any of the values in the example SQL above, edit
 the file `src/main/resources/application.properties` and edit these
 properties:
 
-    mjjs.datasource.url=jdbc:mysql://localhost:8889/mjjs
-    mjjs.datasource.username=mjjsuser
-    mjjs.datasource.password=mjjspassword
-    mjjs.datasource.driverClassName=com.mysql.jdbc.Driver
+     
+    mjjs.datasource.url=jdbc:firebirdsql://firebirddb_Host//var/lib/firebird/2.5/data/employee.fdb
+    mjjs.datasource.username=SYSDBA
+    mjjs.datasource.password=gesha123
+    mjjs.datasource.driverClassName=org.firebirdsql.jdbc.FBDriver
+    
+    initial.sql.query= SELECT * FROM EMPLOYEE  
+    initial.sql.query.field.name=FIRST_NAME
 
 Build / Run
 -----------
@@ -28,35 +26,25 @@ Build / Run
 
 Then navigate to 
 
-    http://localhost:8080/mjjs/hello
+    http://localhost:9090/mjjs/hello
 
-If you get this message:
-
-    Reading /application.properties ...
-    Your database is missing or inaccessible
-
-Fire up MAMP, go to localhost:8888/phpMyAdmin, click on SQL tab and
-copy paste these lines of SQL into the text box and hit "Go"
-
-    CREATE DATABASE mjjs DEFAULT CHARACTER SET utf8;
-    GRANT ALL ON mjjs.* TO 'mjjsuser'@'localhost' IDENTIFIED BY 'mjjspassword';
-    GRANT ALL ON mjjs.* TO 'mjjsuser'@'127.0.0.1' IDENTIFIED BY 'mjjspassword';
-
-Refresh the phpMyAdmin page, and mjjs now appears on the left.
-Click on the mjjs database and then click on the SQL tab. 
-Copy paste this command into the text box and hit go
-
-    CREATE TABLE mjjs (name TEXT) ENGINE = InnoDB DEFAULT CHARSET=utf8;
-    INSERT INTO mjjs (name) VALUES ('tsugi');
-
-Refresh this page: http://localhost:8080/mjjs/hello
 
 If all goes well, you will see output like the following:
 
     Welcome to hello world!
     Reading /application.properties ...
-    name=tsugi
-    Successfully read 1 rows from the database
+    name=Robert
+    name=Bruce
+    name=Kim
+    name=Leslie
+    name=Phil
+    name=K. J.
+    name=Terri
+    name=Stewart
+    name=Katherine
+    ...
+    name=Mark
+    Successfully read 42 rows from the database
 
 
 Looking at the Source Code
